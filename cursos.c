@@ -385,3 +385,60 @@ void buscarfolha(Disciplina **ultimo, Disciplina *filho)
         *ultimo = filho;
     }
 }
+
+void RemoverCurso(Curso **raiz,int codigo)
+{
+    if (*raiz != NULL)
+    {
+        Curso *aux;
+        if((*raiz)->cod == codigo)
+        {
+            if((*raiz)->disc == NULL)
+            {
+                if((*raiz)->esq == NULL && (*raiz)->dir == NULL)
+                {
+                    free(*raiz);
+                    (*raiz) = NULL;
+                }
+                else if((*raiz)->esq == NULL || (*raiz)->dir == NULL)
+                {
+                    Curso *endFilho;
+                    if((*raiz)->esq != NULL)
+                    {
+                        aux = *raiz;
+                        endFilho = (*raiz)->esq;
+                        *raiz = endFilho;
+                        free(aux);
+                        aux = NULL;
+                    }
+                    else
+                    {
+                        aux = *raiz;
+                        endFilho = (*raiz)->dir;
+                        *raiz = endFilho;
+                        free(aux);
+                        aux = NULL;
+                    }
+                }
+                else
+                {
+                    Curso *filho;
+                    aux = *raiz;
+                    filho = (*raiz)->esq;
+                    buscarfolha(&((*raiz)->esq), (*raiz)->dir);
+                    *raiz = filho;
+                    free(aux);      
+                    aux = NULL;          
+                }
+            }
+        }
+        else if (codigo < (*raiz)->cod)
+        {
+            RemoverDsc(&(*raiz)->esq,codigo);
+        }
+        else
+        {
+            RemoverDsc(&(*raiz)->dir,codigo);
+        }
+    }
+}
