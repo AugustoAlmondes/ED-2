@@ -100,42 +100,18 @@ int main() {
     printf("Digite o codigo do Curso: ");
     scanf(" %d",&codigo);
     BuscarCurso_para_RemoverDsc(&arvoreCursos,codigo,codigo_dsc);
+    printf("----- Disciplinas do Curso -----\n");
+    printf("Digite o codigo do curso para ver as disciplinas: ");
+    ExibirDsc_por_Curso(arvoreCursos,codigo);
+
+    //primeira questao - C - 9
+    printf("---- Remover Curso ----\n");
+    printf("Digite o codigo do curso: ");
+    scanf(" %d", &codigo);
+    RemoverCurso(arvoreCursos,codigo);
+    printf("----- Todos os Cursos -----\n");
+    Exibir_Todos_Cursos(arvoreCursos);
+
      
-        /*while (opcao != 0)
-    {
-        switch (opcao)
-        {
-        case 1:
-            //imprimir arvore de cursos em ordem crescente
-            break;
-        case 2:
-            //imprimir os dados de um curso de acordo com o código
-            break;
-        case 3:
-            //Imprimir os curso com a mesma quantidade de blocos, onde o usuário informa os blocos
-            break;
-        case 4:
-            //Imprimir a ávore das disciplinas em ordem crescente pelo código da disciplina dado o código do curso
-            break;
-        case 5:
-            //Imprimir os dados de uma disciplina dado o código dela e do curso ao qual pertence
-            break;
-        case 6:
-            //Imprimir as disciplinas de um determinado bloco de um curso, dado o bloco e o curso
-            break;
-        case 7:
-            //Imprimir todas as disciplinas de um determinado curso com a mesma carga horaria, onde o codigo do curso e a cargo horario devem ser informado pelo usuario
-            break;
-        case 8:
-            //Excluir uma disciplina dado o código da disciplina e o código do curso
-            break;
-        case 9:
-            //Excluir um curso dado o código do mesmo, desde que não haja disciplinas cadastradas no mesmo
-            break;
-        default:
-        printf("ESSA OPCAO NAO EXISTE\n");
-            break;
-        }
-    }*/ 
-    return 0;
+return 0;
 }
