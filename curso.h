@@ -3,6 +3,8 @@ typedef struct disciplina Disciplina;
 
 Curso *CriarArvore_Curso();
 Disciplina *CriarArvore_Dsc();
+Curso *adcCurso();
+Curso *adcDsc();
 void CriarCurso(Curso **raiz);
 void AdicionarCurso(Curso **raiz_curs, int cod, char nome_curs[], int bloco_curs, int semanas);
 void ExibirDsc_por_Curso(Curso *arvore_curso, int codigo_curso);

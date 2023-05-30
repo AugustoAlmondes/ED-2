@@ -9,17 +9,9 @@ int main() {
 
     Curso *arvoreCursos = CriarArvore_Curso();
     Disciplina *arvoreDisciplinas = CriarArvore_Dsc();
-    AdicionarCurso(&arvoreCursos, 1, "ENG", 8, 16);
-    AdicionarCurso(&arvoreCursos, 2, "ADM", 10, 18);
-    AdicionarCurso(&arvoreCursos, 3, "MED", 8, 16);
-    AdicionarCurso(&arvoreCursos, 4, "SI", 10, 18);
-    AdicionarCurso(&arvoreCursos, 5, "ENG.AGR", 8, 16);
-    AdicionarCurso(&arvoreCursos, 7, "ENG.MEC", 10, 18);
-    AdicionarCurso(&arvoreCursos, 6, "ENG.CIV", 8, 16);
-    AdicionarCurso(&arvoreCursos, 9, "NUTR", 10, 18);
-    AdicionarCurso(&arvoreCursos, 8, "MATE", 8, 16);
-    AdicionarCurso(&arvoreCursos, 10, "ED.FIS", 10, 18);
     
+    arvoreCursos = adcCurso();
+
     //primeira questao - C - 1
     printf("----- Todos os Cursos -----\n");
     Exibir_Todos_Cursos(arvoreCursos);
@@ -37,28 +29,8 @@ int main() {
     scanf(" %d", &quantidade);
     ExibirCursoBloco(arvoreCursos,quantidade);
 
-    AdicionarDsc_em_curso(&arvoreCursos,4, 101, "POO1", 4, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 102, "BD1", 4, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 113, "ED1", 4, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 104, "ALG1", 4, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 105, "REDES1", 4, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 111, "POO2", 4, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 107, "BD2", 4, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 120, "ED2", 4, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 109, "ALG2", 4, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,4, 110, "REDES2", 4, 90);   
-
-    AdicionarDsc_em_curso(&arvoreCursos,2, 101, "GESTAO", 2, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 102, "FILOSOFIA", 2, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 113, "EMPREENDEDORISMO", 2, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 104, "CALCULO 1", 5, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 105, "CALCULO 2", 2, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 111, "PLANEJAMENTO", 2, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 107, "SERVICOS", 2, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 120, "MERCADO", 2, 90);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 109, "MARKETING", 2, 60);
-    AdicionarDsc_em_curso(&arvoreCursos,2, 110, "FINANCEIRO", 2, 90);
-
+    arvoreCursos = adcDsc();
+    
     //primeira questao - C - 4
     printf("----- Disciplinas do Curso -----\n");
     printf("Digite o codigo do curso para ver as disciplinas: ");
