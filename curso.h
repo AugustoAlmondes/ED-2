@@ -22,3 +22,4 @@ void BuscarCurso_para_ExibirDsc_por_CH(Curso *raiz,int codigo_curso, int Carga_h
 void ExibirDsc_por_CH(Disciplina *raiz, int Carga_horaria);
 void BuscarCurso_para_RemoverDsc(Curso **raiz, int codigo,int codigo_dsc);
 void RemoverDsc(Disciplina **raiz,int codigo);
+void buscarfolha(Disciplina **ultimo, Disciplina *filho);

@@ -327,9 +327,61 @@ void RemoverDsc(Disciplina **raiz,int codigo)
         Disciplina *aux;
         if((*raiz)->codDisciplina == codigo)
         {
-            //condicões de remoção
-            //Folha - Um filho - Dois filhos
+            if((*raiz)->esq == NULL && (*raiz)->dir == NULL)
+            {
+                free(*raiz);
+                (*raiz) = NULL;
+            }
+            else if((*raiz)->esq == NULL || (*raiz)->dir == NULL)
+            {
+                Disciplina *endFilho;
+                if((*raiz)->esq != NULL)
+                {
+                    aux = *raiz;
+                    endFilho = (*raiz)->esq;
+                    *raiz = endFilho;
+                    free(aux);
+                    aux = NULL;
+                }
+                else
+                {
+                    aux = *raiz;
+                    endFilho = (*raiz)->dir;
+                    *raiz = endFilho;
+                    free(aux);
+                    aux = NULL;
+                }
+            }
+            else
+            {
+                Disciplina *filho;
+                aux = *raiz;
+                filho = (*raiz)->esq;
+                buscarfolha(&((*raiz)->esq), (*raiz)->dir);
+                *raiz = filho;
+                free(aux);      
+                aux = NULL;          
+            }
+        }
+        else if (codigo < (*raiz)->codDisciplina)
+        {
+            RemoverDsc(&(*raiz)->esq,codigo);
+        }
+        else
+        {
+            RemoverDsc(&(*raiz)->dir,codigo);
         }
     }
-    
+}
+
+void buscarfolha(Disciplina **ultimo, Disciplina *filho)
+{
+    if(*ultimo)
+    {
+        buscarfolha(&((*ultimo)->dir), filho);
+    }
+    else
+    {
+        *ultimo = filho;
+    }
 }
