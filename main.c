@@ -108,7 +108,7 @@ int main() {
     printf("---- Remover Curso ----\n");
     printf("Digite o codigo do curso: ");
     scanf(" %d", &codigo);
-    RemoverCurso(arvoreCursos,codigo);
+    RemoverCurso(&arvoreCursos,codigo);
     printf("----- Todos os Cursos -----\n");
     Exibir_Todos_Cursos(arvoreCursos);
 
