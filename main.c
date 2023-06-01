@@ -11,7 +11,7 @@ int main() {
     Disciplina *arvoreDisciplinas = CriarArvore_Dsc();
     
     arvoreCursos = adcCurso();
-
+    
     //primeira questao - C - 1
     printf("----- Todos os Cursos -----\n");
     Exibir_Todos_Cursos(arvoreCursos);
