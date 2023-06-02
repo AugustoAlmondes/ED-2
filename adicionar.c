@@ -1,26 +1,28 @@
     #include<stdio.h>
     #include<stdlib.h>
     #include<string.h>
+    #include <time.h>
     #include "curso.h"
 
-    Curso *adcCurso()
+    
+Curso *adcCurso()
     {
-
+        
         Curso *arvoreCursos;
-
+        
         AdicionarCurso(&arvoreCursos, 7, "Curso 7", 8, 16);
         AdicionarCurso(&arvoreCursos, 29, "Curso 29", 10, 18);
         AdicionarCurso(&arvoreCursos, 2, "Curso 2", 10, 18); // Preenchidio
         AdicionarCurso(&arvoreCursos, 19, "Curso 19", 10, 18);
         AdicionarCurso(&arvoreCursos, 26, "Curso 26", 10, 18);
         AdicionarCurso(&arvoreCursos, 3, "Curso 3", 8, 16);
-        AdicionarCurso(&arvoreCursos, 18, "Curso 18", 8, 16);
-        AdicionarCurso(&arvoreCursos, 14, "Curso 14", 10, 18);
+        AdicionarCurso(&arvoreCursos, 35, "Curso 35", 8, 16);
+        AdicionarCurso(&arvoreCursos, 48, "Curso 48", 10, 18);
         AdicionarCurso(&arvoreCursos, 1, "Curso 1", 10, 18);
         AdicionarCurso(&arvoreCursos, 25, "Curso 25", 8, 16);
         AdicionarCurso(&arvoreCursos, 16, "Curso 16", 8, 16);
         AdicionarCurso(&arvoreCursos, 5, "Curso 5", 8, 16);
-        AdicionarCurso(&arvoreCursos, 4, "Curso 4", 10, 18); // Preenchidio
+        AdicionarCurso(&arvoreCursos, 47, "Curso 47", 10, 18); // Preenchidio
         AdicionarCurso(&arvoreCursos, 22, "Curso 22", 8, 16);
         AdicionarCurso(&arvoreCursos, 27, "Curso 27", 10, 18);
         AdicionarCurso(&arvoreCursos, 6, "Curso 6", 8, 16);
@@ -29,15 +31,27 @@
         AdicionarCurso(&arvoreCursos, 10, "Curso 10", 10, 18);
         AdicionarCurso(&arvoreCursos, 11, "Curso 11", 8, 16);
         AdicionarCurso(&arvoreCursos, 15, "Curso 15", 10, 18);
-        AdicionarCurso(&arvoreCursos, 13, "Curso 13", 8, 16);
+        AdicionarCurso(&arvoreCursos, 13, "Curso 33", 8, 16);
         AdicionarCurso(&arvoreCursos, 12, "Curso 12", 8, 16);
         AdicionarCurso(&arvoreCursos, 17, "Curso 17", 10, 18);
-        AdicionarCurso(&arvoreCursos, 24, "Curso 24", 10, 18);
+        AdicionarCurso(&arvoreCursos, 4, "Curso 4", 10, 18);
         AdicionarCurso(&arvoreCursos, 21, "Curso 21", 8, 16);
         AdicionarCurso(&arvoreCursos, 23, "Curso 23", 10, 18);
         AdicionarCurso(&arvoreCursos, 30, "Curso 30", 8, 16);
         AdicionarCurso(&arvoreCursos, 28, "Curso 28", 8, 16);
         AdicionarCurso(&arvoreCursos, 20, "Curso 20", 10, 18);
+        AdicionarCurso(&arvoreCursos, 34, "Curso 34", 10, 18);
+        AdicionarCurso(&arvoreCursos, 37, "Curso 37", 8, 16);
+        AdicionarCurso(&arvoreCursos, 32, "Curso 32", 10, 18);
+        AdicionarCurso(&arvoreCursos, 41, "Curso 41", 8, 16);
+        AdicionarCurso(&arvoreCursos, 42, "Curso 42", 8, 16);
+        AdicionarCurso(&arvoreCursos, 49, "Curso 49", 10, 18);
+        AdicionarCurso(&arvoreCursos, 14, "Curso 14", 10, 18);
+        AdicionarCurso(&arvoreCursos, 18, "Curso 18", 8, 16);
+        AdicionarCurso(&arvoreCursos, 24, "Curso 24", 10, 18);
+        AdicionarCurso(&arvoreCursos, 13, "Curso 13", 8, 16);
+        AdicionarCurso(&arvoreCursos, 48, "Curso 48", 8, 16);
+        AdicionarCurso(&arvoreCursos, 57, "Curso 57", 10, 18);
 
         return arvoreCursos;
     }
