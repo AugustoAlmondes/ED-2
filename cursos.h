@@ -2,9 +2,6 @@ typedef struct curso Curso;
 typedef struct disciplina Disciplina;
 
 Curso *CriarArvore_Curso();
-Disciplina *CriarArvore_Dsc();
-Curso *adcCurso();
-Curso *adcDsc();
 void CriarCurso(Curso **raiz);
 void AdicionarCurso(Curso **raiz_curs, int cod, char nome_curs[], int bloco_curs, int semanas);
 void ExibirDsc_por_Curso(Curso *arvore_curso, int codigo_curso);
@@ -24,5 +21,6 @@ void BuscarCurso_para_ExibirDsc_por_CH(Curso *raiz,int codigo_curso, int Carga_h
 void ExibirDsc_por_CH(Disciplina *raiz, int Carga_horaria);
 void BuscarCurso_para_RemoverDsc(Curso **raiz, int codigo,int codigo_dsc);
 void RemoverDsc(Disciplina **raiz,int codigo);
-void buscarfolha(Disciplina **ultimo, Disciplina *filho);
+void buscarfolha_Dsc(Disciplina **ultimo, Disciplina *filho);
+void buscarfolha_Curso(Curso **ultimo, Curso *filho);
 void RemoverCurso(Curso **raiz,int codigo);

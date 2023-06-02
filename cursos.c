@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include<time.h>
-#include "curso.h"
+#include "cursos.h"
 
 // definição das structs
 struct disciplina{
@@ -10,7 +10,7 @@ struct disciplina{
     char nome[20];
     int bloco; // deve ser menor ou IGUAL ao do curso
     int cargaHoraria;
-    struct disciplina *esq,*dir;
+    struct disciplina *esq, *dir;
 };
 
 struct curso{
@@ -18,16 +18,11 @@ struct curso{
     char nome[20];
     int blocos;
     int semanas;
-    struct curso *esq,*dir;
+    struct curso *esq, *dir;
     Disciplina *disc;//cada curso tem dua árvore de disciplinas
 };
 
 Curso *CriarArvore_Curso()
-{
-    return NULL;
-}
-
-Disciplina *CriarArvore_Dsc()
 {
     return NULL;
 }
@@ -43,7 +38,7 @@ void AdicionarCurso(Curso **raiz_curs, int cod, char nome_curs[], int bloco_curs
         novoCurso->semanas = semanas;
         novoCurso->esq = NULL;
         novoCurso->dir = NULL;
-        novoCurso->disc = CriarArvore_Dsc();
+        novoCurso->disc = NULL;
 
         *raiz_curs = novoCurso;
     } else {
@@ -53,6 +48,28 @@ void AdicionarCurso(Curso **raiz_curs, int cod, char nome_curs[], int bloco_curs
             AdicionarCurso(&((*raiz_curs)->dir), cod, nome_curs, bloco_curs, semanas);
         }
     }
+}
+
+//EXIBIR DADOS DE UM CURSO
+void ExibirCursos(Curso *arvore)
+{       
+        printf("-----------------------------\n");
+        printf("Codigo do Curso: %d\n", arvore->cod);
+        printf("Nome do Curso: %s\n", arvore->nome);
+        printf("Numero de Blocos: %d\n", arvore->blocos);
+        printf("Numero de Semanas: %d\n", arvore->semanas);
+        printf("-----------------------------\n");
+}
+
+//EXIBIR DADOS DE UMA UNICA DISCIPLINA
+void ExibirDados_Dsc(Disciplina *arvore)
+{
+    printf("-----------------------------\n");
+    printf("Codigo da Disciplina: %d\n", arvore->codDisciplina);
+    printf("Nome da Disciplina: %s\n", arvore->nome);
+    printf("Bloco: %d\n", arvore->bloco);
+    printf("Carga Horario: %d\n", arvore->cargaHoraria);
+    printf("-----------------------------\n");
 }
 
 //EXIBIR TODAS AS DISCIPLINAS DADO O CODIGO DE UM CURSO
@@ -83,28 +100,6 @@ void Exibir_Todos_Cursos(Curso *arvore)
         ExibirCursos(arvore);
         Exibir_Todos_Cursos(arvore->dir);
     }
-}
-
-//EXIBIR DADOS DE UM CURSO
-void ExibirCursos(Curso *arvore)
-{       
-        printf("-----------------------------\n");
-        printf("Codigo do Curso: %d\n", arvore->cod);
-        printf("Nome do Curso: %s\n", arvore->nome);
-        printf("Numero de Blocos: %d\n", arvore->blocos);
-        printf("Numero de Semanas: %d\n", arvore->semanas);
-        printf("-----------------------------\n");
-}
-
-//EXIBIR DADOS DE UMA UNICA DISCIPLINA
-void ExibirDados_Dsc(Disciplina *arvore)
-{
-    printf("-----------------------------\n");
-    printf("Codigo da Disciplina: %d\n", arvore->codDisciplina);
-    printf("Nome da Disciplina: %s\n", arvore->nome);
-    printf("Bloco: %d\n", arvore->bloco);
-    printf("Carga Horario: %d\n", arvore->cargaHoraria);
-    printf("-----------------------------\n");
 }
 
 //EXIBIR DADOS DE TODAS AS DISCIPLINA
@@ -321,7 +316,31 @@ void BuscarCurso_para_RemoverDsc(Curso **raiz, int codigo,int codigo_dsc)
     }
 }
 
-void RemoverDsc(Disciplina **raiz,int codigo)
+void buscarfolha_Dsc(Disciplina **ultimo, Disciplina *filho)
+{
+    if(*ultimo)
+    {
+        buscarfolha_Dsc(&(*ultimo)->dir, filho);
+    }
+    else
+    {
+        *ultimo = filho;
+    }
+}
+
+void buscarfolha_Curso(Curso **ultimo, Curso *filho)
+{
+    if(*ultimo)
+    {
+        buscarfolha_Curso(&(*ultimo)->dir, filho);
+    }
+    else
+    {
+        *ultimo = filho;
+    }
+}
+
+void RemoverDsc(Disciplina** raiz,int codigo)
 {
     if (*raiz != NULL)
     {
@@ -358,7 +377,7 @@ void RemoverDsc(Disciplina **raiz,int codigo)
                 Disciplina *filho;
                 aux = *raiz;
                 filho = (*raiz)->esq;
-                buscarfolha(&((*raiz)->esq), (*raiz)->dir);
+                buscarfolha_Dsc(&((*raiz)->esq), (*raiz)->dir);
                 *raiz = filho;
                 free(aux);      
                 aux = NULL;          
@@ -366,24 +385,12 @@ void RemoverDsc(Disciplina **raiz,int codigo)
         }
         else if (codigo < (*raiz)->codDisciplina)
         {
-            RemoverDsc(&(*raiz)->esq,codigo);
+            RemoverDsc(&((*raiz)->esq),codigo);
         }
         else
         {
-            RemoverDsc(&(*raiz)->dir,codigo);
+            RemoverDsc(&((*raiz)->dir),codigo);
         }
-    }
-}
-
-void buscarfolha(Disciplina **ultimo, Disciplina *filho)
-{
-    if(*ultimo)
-    {
-        buscarfolha(&((*ultimo)->dir), filho);
-    }
-    else
-    {
-        *ultimo = filho;
     }
 }
 
@@ -426,7 +433,7 @@ void RemoverCurso(Curso **raiz,int codigo)
                     Curso *filho;
                     aux = *raiz;
                     filho = (*raiz)->esq;
-                    buscarfolha(&((*raiz)->esq), (*raiz)->dir);
+                    buscarfolha_Curso(&((*raiz)->esq), (*raiz)->dir);
                     *raiz = filho;
                     free(aux);      
                     aux = NULL;          
@@ -435,11 +442,11 @@ void RemoverCurso(Curso **raiz,int codigo)
         }
         else if (codigo < (*raiz)->cod)
         {
-            RemoverDsc(&(*raiz)->esq,codigo);
+            RemoverCurso(&((*raiz)->esq),codigo);
         }
         else
         {
-            RemoverDsc(&(*raiz)->dir,codigo);
+            RemoverCurso(&(*raiz)->dir,codigo);
         }
     }
 }
