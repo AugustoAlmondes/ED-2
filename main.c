@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <windows.h>
 #include "cursos.h"
 
 int main()
@@ -11,11 +12,16 @@ int main()
 
     Curso *arvoreCursos = CriarArvore_Curso();
 
-    clock_t inicio, fim;
+    LARGE_INTEGER inicio, fim, frequencia;
+    double tempo_total;
+
+    // Obtém a frequência do contador de performance
+    QueryPerformanceFrequency(&frequencia); 
+
+    // Obtém o tempo inicial
+    QueryPerformanceCounter(&inicio);
 
     double tempo;
-
-    inicio = clock();
 
     // FUNÇÃO PARA ADICIONAR NÓ NA ÁRVORE DE CURSOS
     AdicionarCurso(&arvoreCursos, 7, "Curso 7", 8, 16);
@@ -61,11 +67,15 @@ int main()
     AdicionarCurso(&arvoreCursos, 48, "Curso 48", 8, 16);
     AdicionarCurso(&arvoreCursos, 57, "Curso 57", 10, 18);
 
-    fim = clock();
+    // Obtém o tempo final
+    QueryPerformanceCounter(&fim);
 
-    tempo = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000;
+    // Calcula o tempo total em milissegundos
+    tempo_total = (double)(fim.QuadPart - inicio.QuadPart) / frequencia.QuadPart * 1000;
 
-    printf("Tempo para preencher Arvore: %.5lf milissegundos\n", tempo);
+    // Exibe o tempo total de preenchimento da árvore
+    printf("Tempo total: %.5f milissegundos\n", tempo_total);
+
     printf("------------------------------------------------\n");
 
     // primeira questao - C - 1
@@ -74,16 +84,10 @@ int main()
 
     // primeira questao - C - 2
 
-    inicio = clock();
     printf("----- Dados de um Curso -----\n");
     printf("Digite o codigo do curso que deseja ver os dados: ");
     scanf(" %d", &codigo);
     ExibirDados_Curso(arvoreCursos, codigo);
-    fim = clock();
-
-    tempo = ((double)(fim - inicio) / CLOCKS_PER_SEC) * 1000;
-    printf("Tempo para exibir dados de um curso: %.5lf milissegundos\n", tempo);
-    printf("------------------------------------------------\n");
 
     // primeira questao - c - 3
     printf("----- Exibir Cursos por Blocos -----\n");
