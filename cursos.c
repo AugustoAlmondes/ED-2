@@ -450,3 +450,41 @@ void RemoverCurso(Curso **raiz,int codigo)
         }
     }
 }
+
+int verificar_semelhanca(Curso *raiz, char nome_crs[], int codigo)
+{
+    if(raiz != NULL)
+    {
+        if(codigo == raiz->cod)
+        {
+            //RETORNA 1 CASO O CODIGO SEJA IGUAL
+            return 1;
+        }
+        if ((compare_strings(raiz->nome,nome_crs) == 1))
+        {
+            //RETURN 2 CASO O NOME SEJA IGUAL
+            return 2;
+        }
+        
+        else if(codigo < raiz->cod)
+        {
+            verificar_semelhanca(raiz->esq, nome_crs,codigo);
+        }
+        else
+        {
+            verificar_semelhanca(raiz->dir,nome_crs,codigo);
+        }
+    }
+}
+
+int compare_strings(const char *str1, const char *str2) {
+    int i = 0;
+    
+    while (str1[i] == str2[i]) {
+        if (str1[i] == '\0')
+            return 1;
+        i++;
+    }
+    
+    return 0;
+}
