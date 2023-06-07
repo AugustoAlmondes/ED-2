@@ -79,69 +79,6 @@ int main()
     printf("Tempo total Adicao de Cursos: %.5f milissegundos\n", tempo_total);
 
     printf("------------------------------------------------\n");
-    {
-        // primeira questao - C - 1
-        /*printf("----- Todos os Cursos -----\n");
-        Exibir_Todos_Cursos(arvoreCursos);
-
-        // primeira questao - C - 2
-
-        printf("----- Dados de um Curso -----\n");
-        printf("Digite o codigo do curso que deseja ver os dados: ");
-        scanf(" %d", &codigo);
-        ExibirDados_Curso(arvoreCursos, codigo);
-
-        // primeira questao - c - 3
-        printf("----- Exibir Cursos por Blocos -----\n");
-        int quantidade;
-        printf("Digite a quantidade de blocos que deseja procurar: ");
-        scanf(" %d", &quantidade);
-        ExibirCursoBloco(arvoreCursos, quantidade);*/
-    } {
-        /*AdicionarDsc_em_curso(&arvoreCursos, 4, 101, "DSC_101_CURSO_4", 4, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 102, "DSC_102_CURSO_4", 4, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 113, "DSC_113_CURSO_4", 4, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 104, "DSC_104_CURSO_4", 4, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 105, "DSC_105_CURSO_4", 4, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 111, "DSC_111_CURSO_4", 4, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 107, "DSC_107_CURSO_4", 4, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 120, "DSC_201_CURSO_4", 4, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 109, "DSC_109_CURSO_4", 4, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 4, 110, "DSC_110_CURSO_4", 4, 90);
-
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 113, "DSC_113_CURSO_2", 2, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 102, "DSC_102_CURSO_2", 2, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 101, "DSC_101_CURSO_2", 2, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 104, "DSC_104_CURSO_2", 5, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 105, "DSC_105_CURSO_2", 2, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 111, "DSC_111_CURSO_2", 2, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 107, "DSC_107_CURSO_2", 2, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 120, "DSC_120_CURSO_2", 2, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 109, "DSC_109_CURSO_2", 2, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 2, 110, "DSC_110_CURSO_2", 2, 90);
-
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 113, "DSC_113_CURSO_6", 6, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 101, "DSC_101_CURSO_6", 6, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 120, "DSC_120_CURSO_6", 6, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 105, "DSC_105_CURSO_6", 6, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 111, "DSC_111_CURSO_6", 6, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 107, "DSC_107_CURSO_6", 6, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 104, "DSC_104_CURSO_6", 6, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 109, "DSC_109_CURSO_6", 6, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 110, "DSC_110_CURSO_6", 6, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 6, 102, "DSC_102_CURSO_6", 6, 90);
-
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 102, "DSC_102_CURSO_7", 8, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 105, "DSC_105_CURSO_7", 8, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 119, "DSC_119_CURSO_7", 8, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 101, "DSC_101_CURSO_7", 8, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 106, "DSC_106_CURSO_7", 8, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 112, "DSC_112_CURSO_7", 8, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 103, "DSC_103_CURSO_7", 8, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 127, "DSC_127_CURSO_7", 8, 90);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 108, "DSC_10_CURSO_7", 8, 60);
-        AdicionarDsc_em_curso(&arvoreCursos, 7, 110, "DSC_110_CURSO_7", 8, 90);*/
-    }
 
     QueryPerformanceFrequency(&frequencia);
 
@@ -581,62 +518,7 @@ int main()
 
     // Exibe o tempo total de preenchimento da árvore
     printf("Tempo total de adicao de Disciplinas: %.5f milissegundos\n", tempo_total);
-    { /*
-     // primeira questao - C - 4
-     printf("----- Disciplinas do Curso -----\n");
-     printf("Digite o codigo do curso para ver as disciplinas: ");
-     scanf(" %d", &codigo);
-     ExibirDsc_por_Curso(arvoreCursos, codigo);
-     printf("\n");
 
-     // primeira questao - C - 5
-     printf("---- Dados de uma unica Disciplina -----\n");
-     int codigo_dsc;
-     printf("Digite o codigo do Curso: ");
-     scanf(" %d", &codigo);
-     printf("Digite o codigo da Disciplina: ");
-     scanf(" %d", &codigo_dsc);
-     Imprimir_dsc(arvoreCursos, codigo, codigo_dsc);
-     printf("\n");
-     // primeira questao - C - 6
-     printf("----- Dados das Disciplinas de acordo com um bloco -----\n ");
-     int bloco;
-     printf("Digite codigo do bloco: ");
-     scanf(" %d", &bloco);
-     printf("Digite codigo do curso: ");
-     scanf(" %d", &codigo);
-
-     BuscarCurso_para_ExibirDsc_por_Bloco(arvoreCursos, codigo, bloco);
-     printf("\n");
-     // primeira questao - C - 7
-     printf("----- Dados das Disciplinas por Carga horaria -----\n");
-     int cargahr;
-     printf("Digite a Carga Horaia: ");
-     scanf(" %d", &cargahr);
-     printf("Digite o Codigo do Curso: ");
-     scanf(" %d", &codigo);
-     BuscarCurso_para_ExibirDsc_por_CH(arvoreCursos, codigo, cargahr);
-     printf("\n");
-     // primeira questao - C - 8
-     printf("----- Remover Disciplina -----\n");
-     printf("Digite o codigo da Disciplina: ");
-     scanf(" %d", &codigo_dsc);
-     printf("Digite o codigo do Curso: ");
-     scanf(" %d", &codigo);
-     BuscarCurso_para_RemoverDsc(&arvoreCursos, codigo, codigo_dsc);
-     printf("----- Disciplinas do Curso -----\n");
-     printf("Digite o codigo do curso para ver as disciplinas: ");
-     ExibirDsc_por_Curso(arvoreCursos, codigo);
-     printf("\n");
-     // primeira questao - C - 9
-     printf("---- Remover Curso ----\n");
-     printf("Digite o codigo do curso: ");
-     scanf(" %d", &codigo);
-     RemoverCurso(&arvoreCursos, codigo);
-     printf("----- Todos os Cursos -----\n");
-     Exibir_Todos_Cursos(arvoreCursos);
-     printf("\n");*/
-    }
     int opcao = -1;
 
     while (opcao != 0)
