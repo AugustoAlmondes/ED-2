@@ -20,7 +20,7 @@ int main()
 
     // Obtém o tempo inicial
     QueryPerformanceCounter(&inicio);
-
+    
     double tempo;
 
     // BLOCO DE ADIÇÃO DE CURSOS
@@ -664,6 +664,49 @@ int main()
 
                 // Exibe o tempo total de preenchimento da árvore
                 printf("Tempo para Adicao de Cursos: %.5f milissegundos\n", tempo_total);
+            }
+            break;
+        case 11:
+            printf("----- Adicionar Nova Disciplina ----\n");
+            printf("Digite o codigo do curso: ");
+            scanf(" %d", &codigo_curso);
+
+            if (verificar_semelhanca(arvoreCursos, nome_curso, codigo_curso) == 1)
+            {
+                char nome_dsc[20];
+                int codigo_dsc;
+                int cargahorario_dsc;
+                int bloco_dsc;
+                printf("\t\tCURSO ENCONTRADO\n");
+                printf("----- Inserir Dados da Disciplina -----\n");
+                printf("Digite o nome da Disciplina: ");
+                scanf(" %[^\n]s", nome_dsc);
+                printf("Digite o codigo da Disciplina: ");
+                scanf(" %d",&codigo_dsc);
+                printf("Digite a cargahoraria da Discplina: ");
+                scanf(" %d",&cargahorario_dsc);
+                printf("Digite o bloco da Disciplina: ");
+                scanf(" %d",&bloco_dsc);
+
+                 // Obtém a frequência do contador de performance
+                QueryPerformanceFrequency(&frequencia);
+
+                // Obtém o tempo inicial
+                QueryPerformanceCounter(&inicio);
+
+                AdicionarDsc_em_curso(&arvoreCursos,codigo_curso,codigo_dsc,nome_dsc,bloco_dsc,cargahorario_dsc);
+
+                QueryPerformanceCounter(&fim);
+
+                // Calcula o tempo total em milissegundos
+                tempo_total = (double)(fim.QuadPart - inicio.QuadPart) / frequencia.QuadPart * 1000;
+
+                // Exibe o tempo total de preenchimento da árvore
+                printf("Tempo para Adicao de Disciplina: %.5f milissegundos\n", tempo_total);
+            }
+            else
+            {
+                printf("\nCURSO NAO ENCONTRADO\n");
             }
             break;
         default:
