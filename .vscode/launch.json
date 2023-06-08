@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Augusto Almondes/OneDrive/Documentos/Augusto Almondes/Sistema de Informação/Atividade compilação/Ed2/ED2",
-      "program": "c:/Users/Augusto Almondes/OneDrive/Documentos/Augusto Almondes/Sistema de Informação/Atividade compilação/Ed2/ED2/build/Debug/outDebug",
+      "cwd": "c:/Users/Augusto Almondes/OneDrive/Documentos/Augusto Almondes/Sistema de Informação/Atividade compilação/Ed2/ED2 - Árvore Binária",
+      "program": "c:/Users/Augusto Almondes/OneDrive/Documentos/Augusto Almondes/Sistema de Informação/Atividade compilação/Ed2/ED2 - Árvore Binária/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
