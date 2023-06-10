@@ -170,7 +170,6 @@ void AdicionarDsc_em_curso(Curso **arvoreCursos, int codigo, int codDisciplina, 
         else
         {
             AdicionarDsc_em_curso(&(*arvoreCursos)->dir, codigo, codDisciplina, nome_dsc, bloco_dsc, cargaHoraria);
-            ;
         }
     }
 }
@@ -464,6 +463,34 @@ void RemoverCurso(Curso **raiz, int codigo)
     }
 }
 
+void verificar_semelhanca_dsc(Curso *raiz, int codigo_crs, int codigo, int cargahorario, int blocos, int *resultado)
+{
+    if (raiz != NULL)
+    {
+        if (codigo_crs == raiz->cod)
+        {
+            if (raiz->blocos <= blocos)
+            {
+                // RETORNAR 1 CASO O NUMERO DE BLOCOS EXCEDA
+                *resultado = 1;
+            }
+            else if ((cargahorario % raiz->semanas) != 0)
+            {
+                // RETORNA 2 CASO AS CARGAHORARIA SEJA INCOMPATIVEL
+                *resultado = 2;
+            }
+        }
+        else if (codigo_crs < raiz->cod)
+        {
+            verificar_semelhanca_dsc(raiz->esq, codigo_crs, codigo, cargahorario, blocos, resultado);
+        }
+        else
+        {
+            verificar_semelhanca_dsc(raiz->dir, codigo_crs, codigo, cargahorario, blocos,resultado);
+        }
+    }
+}
+
 int verificar_semelhanca(Curso *raiz, char nome_crs[], int codigo)
 {
     if (raiz != NULL)
@@ -478,7 +505,6 @@ int verificar_semelhanca(Curso *raiz, char nome_crs[], int codigo)
             // RETURN 2 CASO O NOME SEJA IGUAL
             return 2;
         }
-
         else if (codigo < raiz->cod)
         {
             verificar_semelhanca(raiz->esq, nome_crs, codigo);

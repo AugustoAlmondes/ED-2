@@ -26,3 +26,4 @@ void buscarfolha_Curso(Curso **ultimo, Curso *filho);
 void RemoverCurso(Curso **raiz,int codigo);
 int compare_strings(const char *str1, const char *str2);
 int verificar_semelhanca(Curso *raiz, char nome_crs[], int codigo);
+void verificar_semelhanca_dsc(Curso *raiz, int codigo_crs, int codigo, int cargahorario, int blocos, int *resultado);

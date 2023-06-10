@@ -43,7 +43,6 @@ int main()
                 break;
             }
         }
-
         if (!repetido)
         {
             numeros_gerados[numeros_gerados_count] = numero;
@@ -51,6 +50,5 @@ int main()
             printf("AdicionarCurso(&arvoreCursos, %d, \"Curso %d\", 8, 16);\n", numero, numero);
         }
     }
-
     return 0;
 }
