@@ -1,0 +1,8 @@
+palavra - 200
+arroz - 50
+arroz - 50
+anta - 20
+comer - 100
+comecar - 70
+entao - 150
+garrafa - 170
