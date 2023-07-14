@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "cursos.h"
+#include "cursosb.h"
 
 // definição das structs
 struct disciplina
@@ -141,7 +141,7 @@ void ExibirDados_Curso(Curso *arvore, int codigo)
     }
 }
 // EXIBIR CURSO DE ACORDO COM O BLOCO
-void ExibirCursoBloco(Curso *arvore, int qtd)
+void    ExibirCursoBloco(Curso *arvore, int qtd)
 {
     if (arvore != NULL)
     {
