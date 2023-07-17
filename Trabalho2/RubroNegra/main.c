@@ -102,6 +102,11 @@ int main()
             scanf(" %d", &linha);
             raiz = insere_arv(raiz, palavra_adc, &achou, linha);
             break;
+        case 5:
+            printf("___________________________\n"
+                   "        FINALIZANDO        \n"
+                   "___________________________\n");
+            break;
         default:
             printf("   ESSA OPCAO NAO EXISTE\n");
             break;
