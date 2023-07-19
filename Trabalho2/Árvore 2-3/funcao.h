@@ -1,8 +1,13 @@
 typedef struct arvore Arv;
 typedef struct Posicao posicao;
+Arv *criar_raiz(Arv *raiz);
 Arv *insere_no(Arv **raiz, char palavra[], Arv *pai, char sobe[],int linha);
 Arv *cria_no(char palavra[], Arv *esquerda, Arv *centro,Arv *direita, int linha);
 Arv *eh_folha(Arv *raiz);
-Arv *adiciona_no(Arv *raiz,char palavra, Arv filho_dir);
+Arv *adiciona_no(Arv *raiz,char palavra[], Arv *filho_dir);
 void adicionar_palavra_lista(posicao **raiz,char palavra[],int linha);
 Arv *quebra_no(Arv **no, char palavra[], char sobe[], Arv *filho, int linha);
+Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo);
+void exibirNoRecursivo(Arv *no);
+void printar_raiz(Arv *raiz);
+// Arv *insere_no(Arv *raiz, char palavra[], Arv *pai, char sobe[], int linha);
