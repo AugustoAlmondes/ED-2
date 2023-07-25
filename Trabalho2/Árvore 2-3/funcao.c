@@ -222,12 +222,15 @@ void exibirNoRecursivo(Arv *no)
 {
     if (no != NULL)
     {
-        printf("Informacao 1: %s\n", no->palavra_um);
+        if (no->num_chaves > 0)
+        {
+            printf("Informacao 1: %s\n", no->palavra_um);
+        }
         if (no->num_chaves == 2)
         {
             printf("Informacao 2: %s\n", no->palavra_dois);
         }
-        // printf("NUm.info %d\n", no->num_chaves);
+        printf("NUm.info %d\n", no->num_chaves);
         printf("___________________________\n");
         exibirNoRecursivo(no->filho_esq);
         exibirNoRecursivo(no->filho_crt);
@@ -244,7 +247,7 @@ void exibir_linhas(posicao *raiz)
     }
 }
 
-void buscar_palavra(Arv *raiz, char palavra[], int *result)
+void buscar_palavra_exibir(Arv *raiz, char palavra[], int *result)
 {
     if (raiz != NULL)
     {
@@ -255,16 +258,15 @@ void buscar_palavra(Arv *raiz, char palavra[], int *result)
             exibir_linhas(raiz->psc_palavra_1);
             *result = 1;
         }
-        else if (strcmp(palavra, raiz->palavra_dois) == 0)
+        if (strcmp(palavra, raiz->palavra_dois) == 0)
         {
             printf("Palavra: %s\n", palavra);
             printf("Linha: ");
             exibir_linhas(raiz->psc_palavra_2);
-            *result = 1;
         }
-        buscar_palavra(raiz->filho_esq, palavra, result);
-        buscar_palavra(raiz->filho_crt, palavra, result);
-        buscar_palavra(raiz->filho_dir, palavra, result);
+        buscar_palavra_exibir(raiz->filho_esq, palavra, result);
+        buscar_palavra_exibir(raiz->filho_crt, palavra, result);
+        buscar_palavra_exibir(raiz->filho_dir, palavra, result);
     }
 }
 
@@ -303,7 +305,7 @@ Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo)
 
     if (arquivo == NULL)
     {
-        // printf("Erro ao abrir o arquivo.\n");
+        printf("\nErro ao abrir o arquivo.\n");
         return raiz;
     }
 
@@ -339,8 +341,9 @@ Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo)
         // exibirNoRecursivo(raiz);
         linha_atual++;
     }
-    return raiz;
     fclose(arquivo);
+    printf("\nLeitura feita com sucesso\n");
+    return raiz;
 }
 
 void buscar_para_adicionar(Arv **raiz, char palavra[], int linha)
@@ -370,3 +373,18 @@ void buscar_para_adicionar(Arv **raiz, char palavra[], int linha)
     }
 }
 
+void opcoes(int *opcao)
+{
+    printf("\n"
+           "1 - Sim\n"
+           "2 - Nao\n"
+           "opcao: ");
+    scanf("%d", opcao);
+
+    if (*opcao != 1 && *opcao != 2)
+    {
+        *opcao = 0;
+        printf("Essa opcao nao existe\n");
+        opcoes(opcao);
+    }
+}

@@ -51,21 +51,21 @@ void MaiorInfoRemoveEsq(Arv **raiz, Arv **PaiMaior, Arv **MaiorInfoRemove, int L
                 }
             }
 
-            remover23(PaiMaior, MaiorInfoRemove, aux);
+            remover23(&(*PaiMaior), &(*MaiorInfoRemove), aux);
         }
         else
         {
             if ((*MaiorInfoRemove)->num_chaves == 2)
             {
-                MaiorInfoRemoveEsq(raiz, MaiorInfoRemove, &((*MaiorInfoRemove)->filho_dir), LocalInfo);
+                MaiorInfoRemoveEsq(&(*raiz), &(*MaiorInfoRemove), &((*MaiorInfoRemove)->filho_dir), LocalInfo);
             }
             else if ((*MaiorInfoRemove)->num_chaves == 1)
             {
-                MaiorInfoRemoveEsq(raiz, MaiorInfoRemove, &((*MaiorInfoRemove)->filho_crt), LocalInfo);
+                MaiorInfoRemoveEsq(&(*raiz), &(*MaiorInfoRemove), &((*MaiorInfoRemove)->filho_crt), LocalInfo);
             }
         }
     }
-    Redistribui(MaiorInfoRemove, PaiMaior);
+    Redistribui(&(*MaiorInfoRemove), &(*PaiMaior));
 }
 
 void remover23(Arv **pai, Arv **raiz, char palavra[])
@@ -91,7 +91,7 @@ void remover23(Arv **pai, Arv **raiz, char palavra[])
             {
                 Arv **MaiorInfoRemove = &((*raiz)->filho_esq);
                 Arv **PaiMaior = raiz;
-                MaiorInfoRemoveEsq(raiz, PaiMaior, MaiorInfoRemove, 1);
+                MaiorInfoRemoveEsq(&(*raiz), PaiMaior, MaiorInfoRemove, 1);
             }
         }
         else if ((*raiz)->num_chaves == 2 && strcmp((*raiz)->palavra_dois, palavra) == 0)
@@ -104,25 +104,25 @@ void remover23(Arv **pai, Arv **raiz, char palavra[])
             {
                 Arv **MaiorInfoRemove = &((*raiz)->filho_crt);
                 Arv **PaiMaior = raiz;
-                MaiorInfoRemoveEsq(raiz, PaiMaior, MaiorInfoRemove, 2);
+                MaiorInfoRemoveEsq(&(*raiz), &(*PaiMaior),&(*MaiorInfoRemove), 2);
             }
         }
         else if (strcmp(palavra, (*raiz)->palavra_um) < 0)
         {
-            remover23(raiz, &((*raiz)->filho_esq), palavra);
+            remover23(&(*raiz), &((*raiz)->filho_esq), palavra);
         }
         else if ((*raiz)->num_chaves == 1 ||
                  (*raiz)->num_chaves == 2 &&
                      strcmp(palavra, (*raiz)->palavra_dois) < 0)
         {
-            remover23(raiz, &((*raiz)->filho_crt), palavra);
+            remover23(&(*raiz), &((*raiz)->filho_crt), palavra);
         }
         else
         {
-            remover23(raiz, &((*raiz)->filho_dir), palavra);
+            remover23(&(*raiz), &((*raiz)->filho_dir), palavra);
         }
     }
-    Redistribui(raiz, pai);
+    Redistribui(&(*raiz),&(*pai));
 }
 
 void Redistribui(Arv **raiz, Arv **pai)
@@ -137,7 +137,7 @@ void Redistribui(Arv **raiz, Arv **pai)
                     if ((*pai)->filho_crt->num_chaves == 2)
                     {
                         // (*raiz)->info1 = (*pai)->info1;
-                        strcpy((*raiz)->palavra_um, (*pai)->palavra_um);
+                        strcpy((*raiz)->palavra_um, (*pai)->palavra_dois);
                         (*raiz)->num_chaves = 1;
                         // (*pai)->info2 = (*pai)->filho_crt->info2;
                         strcpy((*pai)->palavra_dois, (*pai)->filho_crt->palavra_dois);

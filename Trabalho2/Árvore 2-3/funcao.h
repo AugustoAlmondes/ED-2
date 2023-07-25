@@ -16,6 +16,7 @@ struct arvore
     struct arvore *filho_dir;
     int num_chaves;
 };
+void opcoes(int *opcao);
 
 Arv *criar_raiz(Arv *raiz);
 Arv *insere_no(Arv **raiz, char palavra[], Arv *pai, char sobe[], int linha);
@@ -27,7 +28,7 @@ Arv *quebra_no(Arv **no, char palavra[], char sobe[], Arv *filho);
 Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo);
 void exibirNoRecursivo(Arv *no);
 void verificar_repeticao(Arv *raiz, char palavra[], int *result);
-void buscar_palavra(Arv *raiz, char palavra[], int *result);
+void buscar_palavra_exibir(Arv *raiz, char palavra[], int *result);
 void exibir_linhas(posicao *raiz);
 void buscar_para_adicionar(Arv **raiz, char palavra[], int linha);
 

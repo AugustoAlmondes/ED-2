@@ -7,54 +7,150 @@ int main()
 {
     Arv *raiz;
     raiz = criar_raiz(raiz);
-    char palavra_busca[20];
-    char nome_arquivo[100];
-    int escolha = -1;
-    while (escolha != 4)
+    char palavra_busca[20], palavra_adc[20],
+        aux[20], nome_arquivo[100];
+
+    int escolha, linha, opcao_5,
+        opcao_3, opcao, opcao_4;
+    escolha = -1;
+    while (escolha != 6)
     {
-        printf("\n------- Menu -------\n"
+        opcao = 0;
+        opcao_3 = 0;
+        opcao_4 = 0;
+        opcao_5 = 0;
+        printf("\n---------------------\n"
+                   "         MENU        \n"
+                   "---------------------\n");
+        printf("\n---------------------\n"
                "1. Ler arquivo\n"
-               "2. Exibir árvore\n"
+               "2. Exibir Arvore\n"
                "3. Buscar Palavra\n"
-               "4. Sair\n"
-               "5. Remove Palavra\n"
+               "4. Remove Palavra\n"
+               "5. Adicionar Palavra\n"
+               "6. Sair\n"
                "---------------------\n"
-               "Digite a opção desejada: ");
+               "Digite a opcao desejada: ");
         scanf("%d", &escolha);
         switch (escolha)
         {
+            //--------------------------------------------------//
         case 1:
-            printf("Digite o nome do arquivo: ");
-            // scanf("%s", nome_arquivo);
-            raiz = ler_arquivo(raiz, "texto.txt");
-            // printf("Arquivo lido e árvore construída com sucesso.\n");
-            break;
-        case 2:
-            printf("Exibindo árvore:\n");
-            exibirNoRecursivo(raiz);
-            break;
-        case 3:
-            printf("Digite a palavra que deseja buscar: ");
-            scanf(" %[^\n]s", palavra_busca);
-            int result = 0;
-            buscar_palavra(raiz, palavra_busca, &result);
-            if (result == 0)
+            printf("\n---------------------\n"
+                   "     LER ARQUIVO     \n"
+                   "---------------------\n");
+            printf("\nDeseja realziar a leitura de um arquivo .txt?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
             {
-                printf("\nESSA PALAVRA NAO FOI ENCONTRADA\n");
+                printf("\n\tLer arquivo\n");
+                printf("Digite o nome do arquivo: ");
+                scanf(" %[^\n]s",nome_arquivo);
+                // raiz = ler_arquivo(raiz, "texto.txt");
+                raiz = ler_arquivo(raiz, nome_arquivo);
             }
             break;
+            //--------------------------------------------------//
+        case 2:
+            printf("\n---------------------\n"
+                   "    EXIBIR ARVORE    \n"
+                   "---------------------\n");
+            printf("\nDeseja realziar a exibicao da Arvore?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
+            {
+                printf("\n\tExibindo Arvore 2-3:\n");
+                exibirNoRecursivo(raiz);
+            }
+            break;
+            //--------------------------------------------------//
+        case 3:
+            printf("\n---------------------\n"
+                   "   BUSCAR PALAVRA    \n"
+                   "---------------------\n");
+            printf("\nDeseja buscar uma palavra para exibir?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
+            {
+                while (opcao_3 != 2)
+                {
+                    printf("\n\tBuscar Palavra\n");
+                    printf("Digite a palavra que deseja buscar: ");
+                    scanf(" %[^\n]s", palavra_busca);
+                    int result = 0;
+                    buscar_palavra_exibir(raiz, palavra_busca, &result);
+                    if (result == 0)
+                    {
+                        printf("\nESSA PALAVRA NAO FOI ENCONTRADA\n");
+                    }
+                    printf("\nDeseja buscar outra palavra?\n");
+                    opcoes(&opcao_3);
+                }
+            }
+            break;
+            //--------------------------------------------------//
         case 4:
+            printf("\n---------------------\n"
+                   "   REMOVER PALAVRA   \n"
+                   "---------------------\n");
+            printf("\nDeseja remover uma palavra?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
+            {
+                while (opcao_4 != 2)
+                {
+                    printf("Digite uma palavra que deseja remover: ");
+                    char palavra_remover[20];
+                    scanf(" %s", palavra_remover);
+                    remover23(NULL, &raiz, palavra_remover);
+
+                    printf("\nDeseja remover outra palavra?\n");
+                    opcoes(&opcao_4);
+                }
+            }
             break;
+            //--------------------------------------------------//
         case 5:
-            // Arv *aux;
-            // aux = NULL;
-            printf("Digite uma palavra que deseja remover: ");
-            char palavra_remover[20];
-            scanf(" %[^\n]s",palavra_remover);
-            remover23(NULL,&raiz,palavra_remover);
+            printf("\n---------------------\n"
+                   "  ADICIONAR PALAVRA  \n"
+                   "---------------------\n");
+            printf("\nDeseja adicionar uma palavra?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
+            {
+                while (opcao_5 != 2)
+                {
+                    printf("Digite a palavra que deseja adicionar: ");
+                    scanf(" %s", palavra_adc);
+                    printf("Digite a linha da palavra: ");
+                    scanf(" %d", &linha);
+                    insere_no(&raiz, palavra_adc, NULL, aux, linha);
+
+                    printf("\nDeseja adicioanr outra palavra?\n");
+                    opcoes(&opcao_5);
+                }
+            }
             break;
+            //--------------------------------------------------//
+        case 6:
+            printf("\n---------------------\n"
+                   "      FINALIZAR      \n"
+                   "---------------------\n");
+            printf("\nDeseja Finalizar o programa?\n");
+            opcoes(&opcao);
+            if (opcao == 1)
+            {
+                printf("\n\tFINALIZADO\n");
+                
+            }
+            else
+            {
+                escolha = -1;
+            }
+            break;
+            //--------------------------------------------------//
         default:
-            printf("Opção inválida. Por favor, tente novamente.\n");
+            printf("\nOpção inválida. Por favor, tente novamente.\n");
         }
     }
 }
