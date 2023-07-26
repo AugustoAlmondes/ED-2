@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "funcao.h"
 
 Arv *criar_raiz(Arv *raiz)
@@ -301,6 +302,7 @@ Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo)
 {
     Arv *aux;
     FILE *arquivo;
+    // clock_t = inicio, fim;
     arquivo = fopen(nome_arquivo, "r");
 
     if (arquivo == NULL)
@@ -313,7 +315,8 @@ Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo)
     char *token;
     int linha_atual = 1;
     char sobe[20];
-
+    clock_t  inicio, fim;
+    inicio = clock();
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         token = strtok(linha, " ");
@@ -330,18 +333,16 @@ Arv *ler_arquivo(Arv *raiz, const char *nome_arquivo)
             }
             else
             {
-                // printf("Buscar pra adicionar na lista\n");
                 buscar_para_adicionar(&raiz, token, linha_atual);
             }
-            // printf("raiz = %s\n", raiz->palavra_um);
             token = strtok(NULL, " ");
-            // printf("fim\n");
-            // printf("_______________________________\n");
         }
-        // exibirNoRecursivo(raiz);
         linha_atual++;
     }
+    fim = clock();
     fclose(arquivo);
+    double tempo = (double)(fim - inicio) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tempo de insercao em milessegundos: %.2lf", tempo);
     printf("\nLeitura feita com sucesso\n");
     return raiz;
 }

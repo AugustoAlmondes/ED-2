@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <windows.h>
 #include "funcao.h"
 
 int main()
@@ -12,6 +14,12 @@ int main()
 
     int escolha, linha, opcao_5,
         opcao_3, opcao, opcao_4;
+
+    double tempo;
+
+    clock_t inicio, fim;
+    LARGE_INTEGER start, end, frequency;
+
     escolha = -1;
     while (escolha != 6)
     {
@@ -20,8 +28,8 @@ int main()
         opcao_4 = 0;
         opcao_5 = 0;
         printf("\n---------------------\n"
-                   "         MENU        \n"
-                   "---------------------\n");
+               "         MENU        \n"
+               "---------------------\n");
         printf("\n---------------------\n"
                "1. Ler arquivo\n"
                "2. Exibir Arvore\n"
@@ -45,7 +53,7 @@ int main()
             {
                 printf("\n\tLer arquivo\n");
                 printf("Digite o nome do arquivo: ");
-                scanf(" %[^\n]s",nome_arquivo);
+                scanf(" %[^\n]s", nome_arquivo);
                 // raiz = ler_arquivo(raiz, "texto.txt");
                 raiz = ler_arquivo(raiz, nome_arquivo);
             }
@@ -76,13 +84,26 @@ int main()
                 {
                     printf("\n\tBuscar Palavra\n");
                     printf("Digite a palavra que deseja buscar: ");
+
                     scanf(" %[^\n]s", palavra_busca);
                     int result = 0;
+                    inicio = clock();
+                    // QueryPerformanceFrequency(&frequency);
+                    // QueryPerformanceCounter(&start);
                     buscar_palavra_exibir(raiz, palavra_busca, &result);
+                    // QueryPerformanceCounter(&end);
+
+                    // Calcular o tempo decorrido em segundos
+                    // tempo = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
+                    fim = clock();
+
+                    tempo = (double)(fim - inicio) * 1000 / CLOCKS_PER_SEC;
                     if (result == 0)
                     {
                         printf("\nESSA PALAVRA NAO FOI ENCONTRADA\n");
                     }
+
+                    printf("\ntempo de busca em milessegundos: %.2lf\n", tempo);
                     printf("\nDeseja buscar outra palavra?\n");
                     opcoes(&opcao_3);
                 }
@@ -141,7 +162,6 @@ int main()
             if (opcao == 1)
             {
                 printf("\n\tFINALIZADO\n");
-                
             }
             else
             {
