@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "funcao.h"
 #define RED 1
 #define BLACK 0
@@ -153,7 +154,7 @@ NO *insere_no(NO *H, char palavra_adc[], int *resp, int linha)
     else if (strcmp(palavra_adc, H->palavra) == 0)
     {
         // printf("Aidionando %s na lista\n", H->palavra);
-        adicionar_lista_encadeada(H->local, palavra_adc, linha);
+        H->local = adicionar_lista_encadeada(H->local, palavra_adc, linha);
     }
     else if (strcmp(palavra_adc, H->palavra) < 0)
     {
@@ -200,19 +201,22 @@ NO *insere_arv(NO *raiz, char palavra_adc[], int *resp, int linha)
 
 NO *ler_arquivo(NO *raiz, const char *nome_arquivo)
 {
+    // clock_t = inicio, fim;
     FILE *arquivo;
     arquivo = fopen(nome_arquivo, "r");
-
+    // clock_t = inicio, fim;
+    float tempo;
     if (arquivo == NULL)
     {
         printf("Erro ao abrir o arquivo.\n");
         return raiz;
     }
-
     char linha[1000];
     char *token;
     int linha_atual = 1;
-
+    clock_t inicio, fim;
+    inicio = clock();
+    // inicio = clock();
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         token = strtok(linha, " ");
@@ -228,8 +232,12 @@ NO *ler_arquivo(NO *raiz, const char *nome_arquivo)
         linha_atual++;
         // printf("leitura concluida\n");
     }
-    return raiz;
+    // fim = clock();
+    fim = clock();
+    tempo = (float)(fim - inicio) * 1000 / CLOCKS_PER_SEC;
+    printf("tempo de insercao em milessegundos: %.2f\n", tempo);
     fclose(arquivo);
+    return raiz;
 }
 
 void exibir_lista_encadeada(psc *lista)
@@ -274,7 +282,7 @@ void exibir_lista(psc *raiz)
 
 void exibir_no(NO *raiz, char palavra[], int *achou)
 {
-    
+
     NO *aux = buscar_palavra(raiz, palavra, achou);
     if (*achou != 0)
     {

@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "funcao.h"
 
 int main()
 {
     NO *raiz;
+    
     raiz = criar_raiz(raiz);
     raiz = ler_arquivo(raiz, "palavras.txt");
     char palavra[20];
@@ -101,11 +103,6 @@ int main()
             printf("Digite a linha da palavra: ");
             scanf(" %d", &linha);
             raiz = insere_arv(raiz, palavra_adc, &achou, linha);
-            break;
-        case 5:
-            printf("___________________________\n"
-                   "        FINALIZANDO        \n"
-                   "___________________________\n");
             break;
         default:
             printf("   ESSA OPCAO NAO EXISTE\n");
