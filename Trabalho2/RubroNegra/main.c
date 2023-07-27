@@ -2,17 +2,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <windows.h>
 #include "funcao.h"
+#define ARQUIVO "palavras.txt"
 
 int main()
 {
     NO *raiz;
-    
+
     raiz = criar_raiz(raiz);
-    raiz = ler_arquivo(raiz, "palavras.txt");
+    // RECEBE O NOME DO ARQUIVO QUE POSSUA O TXT
+    raiz = ler_arquivo(raiz, ARQUIVO);
     char palavra[20];
     char palavra_busca[20];
     int acao = -1;
+    clock_t inicio, fim;
+    LARGE_INTEGER inicio_w, fim_w, frequencia;
+
+    double tempo, tempo_w;
     // exibir_palavras(raiz);
     while (acao != 5)
     {
@@ -53,7 +60,20 @@ int main()
                     printf("\nDigite a palvra que deseja buscar: ");
                     scanf(" %[^\n]s", palavra);
                     printf("\n");
+
+                    inicio = clock();
+                    QueryPerformanceFrequency(&frequencia);
+                    QueryPerformanceCounter(&inicio_w);
+
                     exibir_no(raiz, palavra, &achou);
+
+                    fim = clock();
+                    QueryPerformanceCounter(&fim_w);
+
+                    tempo_w = (double)(fim_w.QuadPart - inicio_w.QuadPart) * 1000.0 / frequencia.QuadPart;
+                    tempo = (double)(fim - inicio) * 1000.0 / CLOCKS_PER_SEC;
+                    printf("Tempo decorrido: %.5f milissegundos (clock)\n", tempo);
+                    printf("Tempo decorrido: %.5f milissegundos (windows)\n", tempo_w);
                     printf("\n");
                     if (achou == 0)
                     {

@@ -15,10 +15,10 @@ int main()
     int escolha, linha, opcao_5,
         opcao_3, opcao, opcao_4;
 
-    double tempo;
+    double tempo, tempo_w;
 
     clock_t inicio, fim;
-    LARGE_INTEGER start, end, frequency;
+    LARGE_INTEGER inicio_w, fim_w, frequencia;
 
     escolha = -1;
     while (escolha != 6)
@@ -87,23 +87,28 @@ int main()
 
                     scanf(" %[^\n]s", palavra_busca);
                     int result = 0;
-                    inicio = clock();
-                    // QueryPerformanceFrequency(&frequency);
-                    // QueryPerformanceCounter(&start);
-                    buscar_palavra_exibir(raiz, palavra_busca, &result);
-                    // QueryPerformanceCounter(&end);
 
-                    // Calcular o tempo decorrido em segundos
-                    // tempo = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
+                    QueryPerformanceFrequency(&frequencia);
+                    
+                    QueryPerformanceCounter(&inicio_w);
+                    inicio = clock();
+
+                    buscar_palavra_exibir(raiz, palavra_busca, &result);
+
+                    QueryPerformanceCounter(&fim_w);
                     fim = clock();
 
+                    tempo_w = (double)(fim_w.QuadPart - inicio_w.QuadPart) * 1000.0 / frequencia.QuadPart;
                     tempo = (double)(fim - inicio) * 1000 / CLOCKS_PER_SEC;
+
                     if (result == 0)
                     {
                         printf("\nESSA PALAVRA NAO FOI ENCONTRADA\n");
                     }
 
-                    printf("\ntempo de busca em milessegundos: %.2lf\n", tempo);
+                    printf("\ntempo de busca em milessegundos (clock): %.5lf\n", tempo);
+                    printf("\ntempo de busca em milessegundos (windows): %.5lf\n", tempo_w);
+
                     printf("\nDeseja buscar outra palavra?\n");
                     opcoes(&opcao_3);
                 }

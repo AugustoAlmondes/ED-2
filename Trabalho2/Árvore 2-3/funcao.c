@@ -254,15 +254,15 @@ void buscar_palavra_exibir(Arv *raiz, char palavra[], int *result)
     {
         if (strcmp(palavra, raiz->palavra_um) == 0)
         {
-            printf("Palavra: %s\n", palavra);
-            printf("Linha: ");
+            // printf("Palavra: %s\n", palavra);
+            // printf("Linha: ");
             exibir_linhas(raiz->psc_palavra_1);
             *result = 1;
         }
         if (strcmp(palavra, raiz->palavra_dois) == 0)
         {
-            printf("Palavra: %s\n", palavra);
-            printf("Linha: ");
+            // printf("Palavra: %s\n", palavra);
+            // printf("Linha: ");
             exibir_linhas(raiz->psc_palavra_2);
         }
         buscar_palavra_exibir(raiz->filho_esq, palavra, result);
