@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-int verificar_amarelo(int pino_2[], int pino_3[], int i)
+int verificar(int pino_2[], int pino_3[], int i)
 {
-    for (int j = 0; j < 27; j++)
+    for (int j = 0; j <= 27; j++)
     {
         if (i == pino_3[j])
         {
@@ -16,9 +16,16 @@ int verificar_amarelo(int pino_2[], int pino_3[], int i)
     return 0;
 }
 
-int verificar_vermelho(int pino_2[], int pino_3[], int i)
+void print(int vermelho, int amarelo, int verde, int rosa, int i)
 {
-    for (int j = 0; j <= 27; j++)
+    printf("inserirValorVertice(G, vertice = %d, vermelho_1 = %d, amarelo_2 = %d, verde_3 = %i, rosa_4 = %i, aresta1 = 2, aresta2 = 7, aresta3 = 8, qtdArestas = 3); // vertice %d\n", i, vermelho, amarelo, verde, rosa, i);
+}
+
+void verificar_rosa(int vermelho, int amarelo, int verde, int rosa_pino_2[], int rosa_pino_3[], int i)
+{
+    int rosa = 1;
+    // ROSA
+    if (verificar(rosa_pino_2, rosa_pino_3, i) == 3)
     {
         rosa = 3;
         print(vermelho, amarelo, verde, rosa, i);
