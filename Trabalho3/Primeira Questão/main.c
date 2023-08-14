@@ -15,6 +15,7 @@ int main()
     {
         linha();
         printf("Digite a opcao:\n"
+        "0 - JOGAR\n"
         "1 - Imprimir Matriz\n"
         "2 - Dijkstra\n"
         "3 - Ford-Moore-Bellman\n"
@@ -24,6 +25,10 @@ int main()
         scanf(" %d",&opc);
         switch (opc)
         {
+        case 0:
+            jogar(G,0);
+            printf("voltou\n");
+            break;
         case 1:
             linha();
             printf("\n\tIMPRIMIR MATRIZ\n");

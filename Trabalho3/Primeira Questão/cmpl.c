@@ -3,8 +3,6 @@
 #include "funcoes.h"
 #define MAX 81
 
-// int contador_glb = 0; // variavel global que usei pra verificar (pode relevar)
-
 int verificar(int pino_2[], int pino_3[], int i)
 {
     for (int j = 0; j <= 27; j++)
@@ -43,14 +41,34 @@ void imprimirGrafo(Graph *G, int n)
     printf("\n");
 }
 
-void print(int vermelho, int amarelo, int verde, int rosa, int i)
+void print_conteudo(Graph *G, int i)
 {
-    printf("vertice = %d, vermelho = %d, amarelo = %d, verde = %i, rosa = %i // vertice %d\n", i, vermelho, amarelo, verde, rosa, i);
+    printf("vertice = %d, vermelho = %d, amarelo = %d, verde = %i, rosa = %i // vertice %d\n", i, G->vertices[i].discos[0], G->vertices[i].discos[1], G->vertices[i].discos[2], G->vertices[i].discos[3], i);
 }
 
 void linha()
 {
     printf("\n"
-        "_______________________________________"
-        "\n");
+           "_______________________________________"
+           "\n");
+}
+
+int condicao_vitoria(Graph *G, int i)
+{
+    int result = 0; // 0 falso -- 1 verdadeiro
+    if (G->vertices[i].discos[0] == 3 && G->vertices[i].discos[1] == 3 &&
+        G->vertices[i].discos[2] == 3 && G->vertices[i].discos[3] == 3)
+    {
+        result = 1;
+    }
+    return result;
+}
+
+void zerar_vetor(int *vetorResposta)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        free(vetorResposta);
+        vetorResposta = (int *)malloc(sizeof(int));
+    }
 }
