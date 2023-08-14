@@ -10,24 +10,22 @@ int main()
     G = iniciaGrafo(81);
     inserirVertices(G);
     inserirArestas(G);
-
     while (opc != 4)
     {
         linha();
-        printf("Digite a opcao:\n"
-        "0 - JOGAR\n"
-        "1 - Imprimir Matriz\n"
-        "2 - Dijkstra\n"
-        "3 - Ford-Moore-Bellman\n"
-        "4 - Sair\n"
-        "opcao: ");
-        linha();
+        printf("\t\t\t---OPCOES---\n"
+        "\t\t0 - JOGAR\n"
+        "\t\t1 - Imprimir Matriz\n"
+        "\t\t2 - Dijkstra\n"
+        "\t\t3 - Ford-Moore-Bellman\n"
+        "\t\t4 - Sair\n"
+        "\t\topcao: ");
         scanf(" %d",&opc);
+        linha();
         switch (opc)
         {
         case 0:
             jogar(G,0);
-            printf("voltou\n");
             break;
         case 1:
             linha();
