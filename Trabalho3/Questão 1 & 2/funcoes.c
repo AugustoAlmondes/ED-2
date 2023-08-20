@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 #include "funcoes.h"
 #define MAX 81
 
 int encontrarVerticeMinimo(int distancias[], int visitados[], int numVertices)
 {
+    // Inicializa a variável para armazenar o valor mínimo encontrado
     int minimo = 999;
+    // Variável para armazenar o índice do vértice com o valor mínimo
     int indiceMinimo;
 
+    // Itera sobre todos os vértices no grafo
     for (int v = 0; v < numVertices; v++)
     {
+        // Verifica se o vértice ainda não foi visitado e se sua distância é menor ou igual ao mínimo atual
         if (!visitados[v] && distancias[v] <= minimo)
         {
             minimo = distancias[v];
@@ -22,35 +27,53 @@ int encontrarVerticeMinimo(int distancias[], int visitados[], int numVertices)
 
 void dijkstra(Graph *grafo, int origem, int destino, int numVertices)
 {
+    LARGE_INTEGER start_time, end_time, frequency;
+    double elapsed_time_ms;
+    // menor distância conhecida de um vértice para a origem
     int *distancias = (int *)malloc(numVertices * sizeof(int));
+    // caminho mais curto para cada vértice
     int *caminho = (int *)malloc(numVertices * sizeof(int));
+    // quais vértices já foram processados
     int *visitados = (int *)malloc(numVertices * sizeof(int));
 
     for (int i = 0; i < numVertices; i++)
     {
         distancias[i] = 999;
+        caminho[i] = -1;
         visitados[i] = 0;
     }
 
+    // distancia de origem
     distancias[origem] = 0;
 
-    for (int count = 0; count < numVertices - 1; count++)
+    QueryPerformanceFrequency(&frequency);
+    QueryPerformanceCounter(&start_time);
+    for (int i = 0; i < numVertices - 1; i++)
     {
-        int u = encontrarVerticeMinimo(distancias, visitados, numVertices);
-        visitados[u] = 1;
+        int menor_dst = encontrarVerticeMinimo(distancias, visitados, numVertices);
 
-        for (int v = 0; v < numVertices; v++)
+        // Marca o vértice como visitado
+        visitados[menor_dst] = 1;
+
+        for (int j = 0; j < numVertices; j++)
         {
-            if (!visitados[v] && grafo->arestas[u][v] && distancias[u] != 999 && distancias[u] + grafo->arestas[u][v] < distancias[v])
+            if (!visitados[j] && grafo->arestas[menor_dst][j] && distancias[menor_dst] != 999 && distancias[menor_dst] + grafo->arestas[menor_dst][j] < distancias[j])
             {
-                distancias[v] = distancias[u] + grafo->arestas[u][v];
-                caminho[v] = u;
+                distancias[j] = distancias[menor_dst] + grafo->arestas[menor_dst][j];
+                caminho[j] = menor_dst;
             }
         }
     }
+    QueryPerformanceCounter(&end_time);
+    elapsed_time_ms = ((double)(end_time.QuadPart - start_time.QuadPart) * 1000.0) / frequency.QuadPart;
 
-    printf("Caminho mais curto de %d para %d: %d", origem, destino, distancias[destino]);
-    printf("\nCaminho: ");
+    printf("Tempo decorrido: %.5f ms\n", elapsed_time_ms);
+
+    if (origem == 0 && destino == 65)
+    {
+        printf("Caminho mais curto de %d para %d: %d", origem, destino, distancias[destino]);
+        printf("\nCaminho: ");
+    }
 
     int i = destino;
     printf("%d", i);
@@ -66,6 +89,8 @@ void dijkstra(Graph *grafo, int origem, int destino, int numVertices)
 
 void fordMooreBellman(Graph *grafo, int origem, int numVertices)
 {
+    LARGE_INTEGER start_time, end_time, frequency;
+    double elapsed_time_ms;
     int *distancias = (int *)malloc(numVertices * sizeof(int));
     int *caminho = (int *)malloc(numVertices * sizeof(int));
 
@@ -76,7 +101,8 @@ void fordMooreBellman(Graph *grafo, int origem, int numVertices)
     }
 
     distancias[origem] = 0;
-
+    QueryPerformanceFrequency(&frequency);
+    QueryPerformanceCounter(&start_time);
     for (int count = 0; count < numVertices - 1; count++)
     {
         for (int u = 0; u < numVertices; u++)
@@ -90,21 +116,29 @@ void fordMooreBellman(Graph *grafo, int origem, int numVertices)
                 }
             }
         }
-    }
+    }  
+    QueryPerformanceCounter(&end_time);
+    
+    elapsed_time_ms = ((double)(end_time.QuadPart - start_time.QuadPart) * 1000.0) / frequency.QuadPart;
+    printf("Tempo decorrido: %.5f ms\n", elapsed_time_ms);
 
     printf("Caminhos mais curtos a partir de %d:\n", origem);
     for (int i = 0; i < numVertices; i++)
     {
-        printf("Para %d: ", i);
-        int j = i;
-        while (caminho[j] != -1)
+        if (i == 65)
         {
-            printf("%d <- ", j);
-            j = caminho[j];
+            printf("Para %d: ", i);
+            int j = i;
+            while (caminho[j] != -1)
+            {
+                printf("%d <- ", j);
+                j = caminho[j];
+            }
+            printf("%d Distancia: %d\n", j, distancias[i]);
         }
-        printf("%d Distancia: %d\n", j, distancias[i]);
     }
 }
+
 Graph *iniciaGrafo(int n)
 {
     Graph *G;
